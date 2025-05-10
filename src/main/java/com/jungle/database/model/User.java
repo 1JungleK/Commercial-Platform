@@ -23,6 +23,10 @@ public class User {
         this.balance = balance;
     }
 
+    public User() {
+        
+    }
+
     public int getUserId() {
         return userId;
     }
