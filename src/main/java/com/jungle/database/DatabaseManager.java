@@ -6,13 +6,13 @@ import java.util.Properties;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-public class DarabaseManager {
+public class DatabaseManager {
     private static HikariDataSource dataSource;
 
     static {
         try {
             Properties props = new Properties();
-            props.load(DarabaseManager.class.getResourceAsStream("/db.properties"));
+            props.load(DatabaseManager.class.getResourceAsStream("/db.properties"));
 
             HikariConfig config = new HikariConfig();
             config.setJdbcUrl(props.getProperty("db.url"));

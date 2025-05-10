@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.jungle.database.DarabaseManager;
+import com.jungle.database.DatabaseManager;
 import com.jungle.database.dao.UserDao;
 import com.jungle.database.model.User;
 
@@ -15,7 +15,7 @@ public class UserDaoImpl implements UserDao {
     public boolean createUser(User user) throws SQLException {
         String sql = "INSERT INTO users (username, password, email, balance) VALUES (?, ?, ?, ?)";
 
-        try (Connection conn = DarabaseManager.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = DatabaseManager.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             
             stmt.setString(1, user.getUsername());
             stmt.setString(2, user.getPassword());
@@ -31,7 +31,7 @@ public class UserDaoImpl implements UserDao {
     public User getUserById(int userId) throws SQLException {
         String sql = "SELECT * FROM users WHERE id = ?";
 
-        try (Connection conn = DarabaseManager.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = DatabaseManager.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, userId);
 
@@ -48,7 +48,7 @@ public class UserDaoImpl implements UserDao {
     public User getUserByUsername(String username) throws SQLException {
         String sql = "SELECT * FROM users WHERE username = ?";
 
-        try (Connection conn = DarabaseManager.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = DatabaseManager.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             
             stmt.setString(1, username);
 
@@ -65,7 +65,7 @@ public class UserDaoImpl implements UserDao {
     public User getUserByEmail(String email) throws SQLException {
         String sql = "SELECT * FROM users WHERE emial = ?";
 
-        try (Connection conn = DarabaseManager.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = DatabaseManager.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             
             stmt.setString(1, email);
 
@@ -82,7 +82,7 @@ public class UserDaoImpl implements UserDao {
     public boolean updateUser(User user) throws SQLException {
         String sql = "UPDATE users SET username = ?, password = ?, email = ?, balance = ? WHERE id = ?";
 
-        try (Connection conn = DarabaseManager.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = DatabaseManager.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, user.getUsername());
             stmt.setString(2, user.getPassword());
@@ -99,7 +99,7 @@ public class UserDaoImpl implements UserDao {
     public boolean deleteUser(int userId) throws SQLException {
         String sql = "DELETE FROM users WHERE id = ?";
 
-        try (Connection conn = DarabaseManager.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = DatabaseManager.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, userId);
 
@@ -112,7 +112,7 @@ public class UserDaoImpl implements UserDao {
     public boolean validateCredentials(String username, String password) throws SQLException {
         String sql = "SELECT password FROM users WHERE username = ?";
 
-        try (Connection conn = DarabaseManager.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = DatabaseManager.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             
             stmt.setString(1, username);
 
