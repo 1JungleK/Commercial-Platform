@@ -37,11 +37,10 @@ public class UserDaoTest {
     @Before
     public void init() throws SQLException {
         // 每个测试前重置部分数据
-        try (Connection conn = DatabaseManager.getConnection();
-             Statement stmt = conn.createStatement()) {
+        try (Connection conn = DatabaseManager.getConnection(); Statement stmt = conn.createStatement()) {
             // 确保测试用户存在
             stmt.executeUpdate("INSERT IGNORE INTO users (username, password, email, balance) VALUES " +
-                    "('testuser', 'password123', 'test@example.com', 100.00)");
+                               "('testuser', 'password123', 'test@example.com', 100.00)");
         }
     }
 
