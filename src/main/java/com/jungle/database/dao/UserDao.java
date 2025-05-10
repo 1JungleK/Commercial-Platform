@@ -3,6 +3,14 @@ package com.jungle.database.dao;
 import java.sql.SQLException;
 import com.jungle.database.model.User;
 
+/**
+ *  The interface of user-dao
+ * 
+ *  @author Zhixin Li
+ * 
+ *  @version May 10, 2025
+ */
+
 public interface UserDao {
 
     boolean createUser(User user) throws SQLException;

@@ -6,6 +6,14 @@ import java.util.Properties;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
+/**
+ *  Configure the properties of local database
+ * 
+ *  @author Zhixin Li
+ * 
+ *  @version May 10, 2025
+ */
+
 public class DatabaseManager {
     private static HikariDataSource dataSource;
 

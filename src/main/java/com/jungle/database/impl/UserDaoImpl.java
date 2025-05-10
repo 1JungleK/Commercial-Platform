@@ -9,6 +9,14 @@ import com.jungle.database.DatabaseManager;
 import com.jungle.database.dao.UserDao;
 import com.jungle.database.model.User;
 
+/**
+ *  The implementation of user-dao
+ *  
+ *  @author Zhixin Li
+ * 
+ *  @version May 10, 2025
+ */
+
 public class UserDaoImpl implements UserDao {
 
     @Override
