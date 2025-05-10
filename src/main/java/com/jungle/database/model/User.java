@@ -15,16 +15,14 @@ public class User {
     private String email;
     private double balance;
 
+    public User() { }
+
     public User(int userId, String username, String password, String email, double balance) {
         this.userId = userId;
         this.username = username;
         this.password = password;
         this.email = email;
         this.balance = balance;
-    }
-
-    public User() {
-        
     }
 
     public int getUserId() {
