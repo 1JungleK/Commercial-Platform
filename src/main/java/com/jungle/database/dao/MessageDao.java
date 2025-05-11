@@ -16,10 +16,6 @@ public interface MessageDao {
 
     boolean createMessage(int senderId, int receiverId, String content) throws SQLException;
 
-    List<Message> getMessagesByUserId(int userId) throws SQLException;
-
     List<Message> getMessagesBySenderAndReceiver(int senderId, int receiverId) throws SQLException;
-
-    boolean deleteMessage(int messageId) throws SQLException;
 
 }

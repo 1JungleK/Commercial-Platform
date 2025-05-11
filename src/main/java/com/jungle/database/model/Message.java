@@ -1,5 +1,7 @@
 package com.jungle.database.model;
 
+import java.sql.Timestamp;
+
 /**
  *  The model of message
  * 
@@ -13,9 +15,11 @@ public class Message {
     private int senderId;
     private int receiverId;
     private String content;
-    private long timestamp;
+    private Timestamp timestamp;
 
-    public Message(int messageId, int senderId, int receiverId, String content, long timestamp) {
+    public Message() { };
+    
+    public Message(int messageId, int senderId, int receiverId, String content, Timestamp timestamp) {
         this.messageId = messageId;
         this.senderId = senderId;
         this.receiverId = receiverId;
@@ -55,11 +59,11 @@ public class Message {
         this.content = content;
     }
 
-    public long getTimestamp() {
+    public Timestamp getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(long timestamp) {
+    public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
     }
 }
