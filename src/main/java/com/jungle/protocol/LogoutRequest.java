@@ -1,4 +1,4 @@
-package com.jungle.protocol.requests;
+package com.jungle.protocol;
 
 public class LogoutRequest extends Request {
     private static final long serialVersionUID = 1L;

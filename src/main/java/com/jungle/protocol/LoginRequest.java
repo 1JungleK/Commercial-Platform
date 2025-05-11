@@ -1,4 +1,4 @@
-package com.jungle.protocol.requests;
+package com.jungle.protocol;
 
 /**
  *  LoginRequest class represents a request to log in to the system.

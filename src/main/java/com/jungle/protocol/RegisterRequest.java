@@ -1,4 +1,4 @@
-package com.jungle.protocol.requests;
+package com.jungle.protocol;
 
 /**
  *  RegisterRequest class represents a request to register a new user in the system.

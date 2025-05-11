@@ -1,4 +1,4 @@
-package com.jungle.protocol.requests;
+package com.jungle.protocol;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package com.jungle.protocol.requests;
+package com.jungle.protocol;
 
 public enum RequestType {
     LOGIN,
