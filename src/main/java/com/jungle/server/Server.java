@@ -6,6 +6,14 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ *  Server class that handles incoming client connections and manages client sessions.
+ * 
+ *  @author Zhixin Li
+ * 
+ *  @version May 11, 2025
+ */
+
 public class Server {
     private static final int DEFAULT_PORT = 8080;
 
