@@ -11,6 +11,14 @@ import com.jungle.database.DatabaseManager;
 import com.jungle.database.dao.ItemDao;
 import com.jungle.database.model.Item;
 
+/**
+ *  Implementation of the ItemDao interface for managing items in the database.
+ * 
+ *  @author Zhixin Li
+ * 
+ *  @version May 11, 2025
+ */
+
 public class ItemDaoImpl implements ItemDao {
     
     @Override

@@ -11,6 +11,14 @@ import com.jungle.database.DatabaseManager;
 import com.jungle.database.dao.MessageDao;
 import com.jungle.database.model.Message;
 
+/**
+ *  Implementation of the MessageDao interface for managing messages in the database.
+ * 
+ *  @author Zhixin Li
+ * 
+ *  @version May 11, 2025
+ */
+
 public class MessageDaoImpl implements MessageDao{
     
     @Override
