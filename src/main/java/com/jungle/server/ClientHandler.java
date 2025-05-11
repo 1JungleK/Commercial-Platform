@@ -54,7 +54,7 @@ public class ClientHandler implements Runnable{
             System.err.println("Error initializing streams: " + e.getMessage());
         } finally {
             closeConnection();
-
+            clients.remove(clientId);
         }
     }
 
