@@ -1,9 +1,11 @@
 package com.jungle.server;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.SocketException;
 import java.sql.SQLException;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -62,18 +64,27 @@ public class ClientHandler implements Runnable{
 
             while (running) {
                 try {
+                    // Read request object from client
                     Request request = (Request) inputStream.readObject();
-
+                    
+                    // Process the request and get a response
                     Response response = processRequest(request);
-
+                    
+                    // Send response back to client
                     outputStream.writeObject(response);
                     outputStream.flush();
+                    
                 } catch (ClassNotFoundException e) {
                     System.err.println("Error: Invalid object received from client - " + e.getMessage());
-                    sendErrorResponse("Invalid object received from client.");
+                    sendErrorResponse("Invalid request format");
+                } catch (EOFException | SocketException e) {
+                    // Client disconnected
+                    System.out.println("Client disconnected: " + clientId);
+                    running = false;
                 } catch (Exception e) {
-                    System.err.println("Error processing request: " + e.getMessage());
-                    sendErrorResponse("Error processing request.");
+                    System.err.println("Error processing client request: " + e.getMessage());
+                    e.printStackTrace();
+                    sendErrorResponse("Server error: " + e.getMessage());
                 }
             }
             

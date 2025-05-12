@@ -1,7 +1,7 @@
 package com.jungle.client;
 
 import com.jungle.client.service.ClientService;
-import com.jungle.client.ui.LoginForm;
+import com.jungle.client.ui.AppEntrance;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,12 +11,11 @@ public class Main {
         ClientService clientService = new ClientService(serverAddress, serverPort);
         System.out.println("Connecting to server at " + serverAddress + ":" + serverPort);
         clientService.connect();
-        System.out.println("Connected to server.");
 
-        // Example usage
+
         if (clientService.isConnected()) {
-            // Perform login
-            new LoginForm(clientService).setVisible(true);
+            new AppEntrance(clientService).setVisible(true);
         }
+
     }
 }

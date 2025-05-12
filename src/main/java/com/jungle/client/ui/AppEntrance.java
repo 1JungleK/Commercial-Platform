@@ -13,9 +13,9 @@ import com.jungle.client.service.ClientService;
 import com.jungle.protocol.Response;
 import com.jungle.protocol.ResponseStatus;
 
-public class LoginForm extends JFrame {
+public class AppEntrance extends JFrame {
     ClientService clientService;
-    public LoginForm(ClientService clientService) {
+    public AppEntrance(ClientService clientService) {
         this.clientService = clientService;
 
         setTitle("Market of Jungle");
@@ -139,10 +139,10 @@ public class LoginForm extends JFrame {
                 Response response = clientService.login(username, password);
 
                 if (response != null && response.getStatus() == ResponseStatus.SUCCESS) {
-                    JOptionPane.showMessageDialog(LoginForm.this, "Login successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(AppEntrance.this, "Login successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     dispose();
                 } else {
-                    JOptionPane.showMessageDialog(LoginForm.this, "Login failed: " + (response != null ? response.getMessage() : "Unknown error"), "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(AppEntrance.this, "Login failed: " + (response != null ? response.getMessage() : "Unknown error"), "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
