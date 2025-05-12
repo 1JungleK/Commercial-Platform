@@ -1,20 +1,23 @@
-package com.jungle.client;
+package com.jungle.client.ui;
 
 import javax.swing.*;
-
-import com.jungle.protocol.LoginRequest;
-
 import java.awt.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.geom.RoundRectangle2D;
 
+import com.jungle.client.service.ClientService;
+import com.jungle.protocol.Response;
+import com.jungle.protocol.ResponseStatus;
+
 public class LoginForm extends JFrame {
-    
-    public LoginForm() {
-        // 设置窗口属性
+    ClientService clientService;
+    public LoginForm(ClientService clientService) {
+        this.clientService = clientService;
+
         setTitle("Market of Jungle");
         setSize(400, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -133,10 +136,14 @@ public class LoginForm extends JFrame {
                 String username = usernameField.getText();
                 String password = new String(passwordField.getPassword());
                 
-                LoginRequest loginRequest = new LoginRequest(username, password);
+                Response response = clientService.login(username, password);
 
-                // send loginRequest to server, handle response
-                
+                if (response != null && response.getStatus() == ResponseStatus.SUCCESS) {
+                    JOptionPane.showMessageDialog(LoginForm.this, "Login successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(LoginForm.this, "Login failed: " + (response != null ? response.getMessage() : "Unknown error"), "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
     }
@@ -244,20 +251,5 @@ public class LoginForm extends JFrame {
         button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         
         return button;
-    }
-    
-    public static void main(String[] args) {
-        try {
-            // 设置系统UI风格
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            
-            // 使用SwingUtilities确保线程安全
-            SwingUtilities.invokeLater(() -> {
-                LoginForm loginForm = new LoginForm();
-                loginForm.setVisible(true);
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }
