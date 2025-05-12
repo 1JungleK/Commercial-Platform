@@ -1,5 +1,7 @@
 package com.jungle.database.model;
 
+import java.io.Serializable;
+
 /**
  *  The model of items in database
  * 
@@ -8,7 +10,7 @@ package com.jungle.database.model;
  *  @version May 10, 2025
  */
 
-public class Item {
+public class Item implements Serializable {
     private int itemId;
     private String name;
     private double price;

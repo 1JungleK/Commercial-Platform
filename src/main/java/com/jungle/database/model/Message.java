@@ -1,5 +1,6 @@
 package com.jungle.database.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
@@ -10,7 +11,7 @@ import java.sql.Timestamp;
  *  @version May 10, 2025
  */
 
-public class Message {
+public class Message implements Serializable {
     private int messageId;
     private int senderId;
     private int receiverId;
