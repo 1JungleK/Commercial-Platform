@@ -1,5 +1,7 @@
 package com.jungle.database.model;
 
+import java.io.Serializable;
+
 /**
  *  The model of users in database
  * 
@@ -8,7 +10,7 @@ package com.jungle.database.model;
  *  @version May 10, 2025
  */
 
-public class User {
+public class User implements Serializable {
     private int userId;
     private String username;
     private String password;
