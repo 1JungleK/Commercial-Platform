@@ -1,6 +1,9 @@
 package com.jungle.client;
 
 import javax.swing.*;
+
+import com.jungle.protocol.LoginRequest;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -130,18 +133,10 @@ public class LoginForm extends JFrame {
                 String username = usernameField.getText();
                 String password = new String(passwordField.getPassword());
                 
-                if(username.isEmpty() || password.isEmpty()) {
-                    JOptionPane.showMessageDialog(LoginForm.this, 
-                            "用户名和密码不能为空", 
-                            "错误", 
-                            JOptionPane.ERROR_MESSAGE);
-                } else {
-                    // 这里添加登录验证逻辑
-                    JOptionPane.showMessageDialog(LoginForm.this, 
-                            "登录成功!", 
-                            "成功", 
-                            JOptionPane.INFORMATION_MESSAGE);
-                }
+                LoginRequest loginRequest = new LoginRequest(username, password);
+
+                // send loginRequest to server, handle response
+                
             }
         });
     }
