@@ -16,6 +16,7 @@ import com.jungle.database.impl.ItemDaoImpl;
 import com.jungle.database.impl.MessageDaoImpl;
 import com.jungle.database.impl.UserDaoImpl;
 import com.jungle.database.model.User;
+import com.jungle.protocol.ForgotPwdRequest;
 import com.jungle.protocol.LoginRequest;
 import com.jungle.protocol.RegisterRequest;
 import com.jungle.protocol.Request;
@@ -113,6 +114,10 @@ public class ClientHandler implements Runnable{
                     handleLogout(request, response);
                     break;
 
+                case FORGOT_PWD:
+                    hadleForgotPwd(request, response);
+                    break;
+
                 default:
                     response.setStatus(ResponseStatus.ERROR);
                     response.setMessage("Unknown request type.");
@@ -208,6 +213,43 @@ public class ClientHandler implements Runnable{
         
         response.setStatus(ResponseStatus.SUCCESS);
         response.setMessage("Logged out successfully");
+    }
+
+    private void hadleForgotPwd(Request request, Response response) throws SQLException {
+        ForgotPwdRequest forgotPwdRequest = (ForgotPwdRequest) request;
+        String username = forgotPwdRequest.getUsername();
+        String email = forgotPwdRequest.getEmail();
+        String newPassword = forgotPwdRequest.getPassword();
+
+        if (username == null || username.isEmpty() || email == null || email.isEmpty() || newPassword == null || newPassword.isEmpty()) {
+            response.setStatus(ResponseStatus.ERROR);
+            response.setMessage("Username, email, and new password cannot be empty.");
+            return;
+        }
+
+        User user = userDao.getUserByUsername(username);
+        if (user == null) {
+            response.setStatus(ResponseStatus.ERROR);
+            response.setMessage("User not found");
+            return;
+        }
+
+        if (!user.getEmail().equals(email)) {
+            response.setStatus(ResponseStatus.ERROR);
+            response.setMessage("Email does not match the registered email");
+            return;
+        }
+
+        user.setPassword(newPassword);
+        boolean success = userDao.updateUser(user);
+
+        if (success) {
+            response.setStatus(ResponseStatus.SUCCESS);
+            response.setMessage("Password reset successful");
+        } else {
+            response.setStatus(ResponseStatus.ERROR);
+            response.setMessage("Failed to reset password");
+        }
     }
 
     private void sendErrorResponse(String message) {

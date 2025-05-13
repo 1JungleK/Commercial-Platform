@@ -159,6 +159,19 @@ public class AppEntrance extends JFrame {
                 dialog.setVisible(true);
             }
         });
+
+        forgotPassword.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                UpdatePanel updatePanel = new UpdatePanel(clientService);
+
+                JDialog dialog = new JDialog(AppEntrance.this, "Update Password", true);
+                dialog.setContentPane(updatePanel);
+                dialog.setSize(400, 300);
+                dialog.setLocationRelativeTo(AppEntrance.this);
+                dialog.setVisible(true);
+            }
+        });
     }
     
     // 创建样式化文本框

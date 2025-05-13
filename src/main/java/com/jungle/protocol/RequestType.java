@@ -3,6 +3,7 @@ package com.jungle.protocol;
 public enum RequestType {
     LOGIN,
     REGISTER,
+    FORGOT_PWD,
     LOGOUT,
     GET_ITEM,
     CREATE_ITEM,

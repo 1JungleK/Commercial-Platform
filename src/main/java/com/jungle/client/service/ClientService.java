@@ -3,6 +3,7 @@ package com.jungle.client.service;
 import java.io.IOException;
 
 import com.jungle.client.network.Client;
+import com.jungle.protocol.ForgotPwdRequest;
 import com.jungle.protocol.LoginRequest;
 import com.jungle.protocol.RegisterRequest;
 import com.jungle.protocol.Request;
@@ -61,6 +62,22 @@ public class ClientService {
             request.setUsername(username);
             request.setPassword(password);
             request.setEmail(email);
+            
+            return sendRequest(request);
+        } catch (IOException | ClassNotFoundException e) {
+            Response response = new Response();
+            response.setStatus(ResponseStatus.ERROR);
+            response.setMessage("Communication error: " + e.getMessage());
+            return response;
+        }
+    }
+
+    public Response handleForgotPwd(String username, String email, String newPassword) {
+        try {
+            ForgotPwdRequest request = new ForgotPwdRequest();
+            request.setUsername(username);
+            request.setEmail(email);
+            request.setPassword(newPassword);
             
             return sendRequest(request);
         } catch (IOException | ClassNotFoundException e) {
