@@ -21,6 +21,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import com.jungle.client.service.ClientService;
+import com.jungle.protocol.Response;
+import com.jungle.protocol.ResponseStatus;
 
 public class UpdatePanel extends JPanel {
     private JTextField newPasswordField;
@@ -104,7 +106,14 @@ public class UpdatePanel extends JPanel {
             }
 
             // Call the client service to register the user
-            clientService.handleForgotPwd(username, email, confirmNewPassword);
+            Response response = clientService.handleForgotPwd(username, email, confirmNewPassword);
+
+            if (response.getStatus() == ResponseStatus.SUCCESS) {
+                System.out.println("Password updated successfully.");
+                SwingUtilities.getWindowAncestor(this).dispose();
+            } else {
+                System.out.println("Failed to update password: " + response.getMessage());
+            }
         });
 
         cancelButton.addActionListener(e -> {

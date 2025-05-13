@@ -19,9 +19,12 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import com.jungle.client.service.ClientService;
+import com.jungle.protocol.Response;
+import com.jungle.protocol.ResponseStatus;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 public class RegisterPanel extends JPanel {
     private JTextField usernameField;
@@ -106,7 +109,14 @@ public class RegisterPanel extends JPanel {
             }
 
             // Call the client service to register the user
-            clientService.register(username, password, email);
+            Response response = clientService.register(username, password, email);
+
+            if (response.getStatus() == ResponseStatus.SUCCESS) {
+                JOptionPane.showMessageDialog(this, "Registration successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                SwingUtilities.getWindowAncestor(this).dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Registration failed: " + response.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         });
 
         cancelButton.addActionListener(e -> {
