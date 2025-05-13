@@ -26,6 +26,15 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+/**
+ *  RegisterPanel class represents the registration panel in the client application.
+ *  It allows users to register a new account and provides a cancel button to close the panel.
+ * 
+ *  @author Zhixin Li
+ * 
+ *  @version May 13, 2025
+ */
+
 public class RegisterPanel extends JPanel {
     private JTextField usernameField;
     private JTextField passwordField;
@@ -207,5 +216,4 @@ public class RegisterPanel extends JPanel {
         
         return passwordField;
     }
-
 }

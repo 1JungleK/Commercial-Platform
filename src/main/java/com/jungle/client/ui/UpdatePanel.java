@@ -24,6 +24,15 @@ import com.jungle.client.service.ClientService;
 import com.jungle.protocol.Response;
 import com.jungle.protocol.ResponseStatus;
 
+/**
+ *  UpdatePanel class represents the update password panel in the client application.
+ *  It allows users to update their password and provides a cancel button to close the panel.
+ * 
+ *  @author Zhixin Li
+ * 
+ *  @version May 13, 2025
+ */
+
 public class UpdatePanel extends JPanel {
     private JTextField newPasswordField;
     private JTextField confirmNewPasswordField;
