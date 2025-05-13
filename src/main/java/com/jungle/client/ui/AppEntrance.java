@@ -146,6 +146,19 @@ public class AppEntrance extends JFrame {
                 }
             }
         });
+
+        register.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                RegisterPanel registerPanel = new RegisterPanel(clientService);
+                
+                JDialog dialog = new JDialog(AppEntrance.this, "Register", true);
+                dialog.setContentPane(registerPanel);
+                dialog.setSize(400, 300);
+                dialog.setLocationRelativeTo(AppEntrance.this);
+                dialog.setVisible(true);
+            }
+        });
     }
     
     // 创建样式化文本框

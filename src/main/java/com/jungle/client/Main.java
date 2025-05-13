@@ -1,5 +1,7 @@
 package com.jungle.client;
 
+import javax.swing.SwingUtilities;
+
 import com.jungle.client.service.ClientService;
 import com.jungle.client.ui.AppEntrance;
 
@@ -14,7 +16,9 @@ public class Main {
 
 
         if (clientService.isConnected()) {
-            new AppEntrance(clientService).setVisible(true);
+            SwingUtilities.invokeLater(() -> {
+                new AppEntrance(clientService).setVisible(true);
+            });
         }
 
     }
