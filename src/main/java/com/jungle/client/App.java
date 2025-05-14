@@ -4,6 +4,7 @@ import javax.swing.SwingUtilities;
 
 import com.jungle.client.service.ClientService;
 import com.jungle.client.ui.AppEntrance;
+import com.jungle.client.ui.MainFrame;
 
 public class App {
     public static void main(String[] args) {
@@ -16,10 +17,16 @@ public class App {
 
 
         if (clientService.isConnected()) {
+            System.out.println("Connected to server.");
             SwingUtilities.invokeLater(() -> {
-                new AppEntrance(clientService).setVisible(true);
+                AppEntrance appEntrance = new AppEntrance(clientService, () -> {
+                    MainFrame mainFrame = new MainFrame(clientService);
+                    mainFrame.setVisible(true);
+                });
+                appEntrance.setVisible(true);
             });
+        } else {
+            System.out.println("Failed to connect to server.");
         }
-
     }
 }
